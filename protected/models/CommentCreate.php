@@ -1,22 +1,22 @@
-
 <?php
 
 /**
- * This is the model class for table "Post_list".
+ * This is the model class for table "Comment_Create".
  *
- * The followings are the available columns in table 'Post_list':
+ * The followings are the available columns in table 'Comment_Create':
  * @property integer $id
- * @property string $title
- * @property string $content
+ * @property string $Author_Name
+ * @property string $Comment
+ * @property integer $post_id
  */
-class PostList extends CActiveRecord
+class CommentCreate extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'Post_list';
+        return 'Comment_Create';
     }
 
     /**
@@ -27,12 +27,12 @@ class PostList extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title', 'required'),
-            array('title', 'length', 'max'=>255),
-            array('content', 'safe'),
+            array('Author_Name, Comment', 'required'),
+            array('post_id', 'numerical', 'integerOnly'=>true),
+            array('Author_Name, Comment', 'length', 'max'=>255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, title, content', 'safe', 'on'=>'search'),
+            array('id, Author_Name, Comment, post_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -43,7 +43,7 @@ class PostList extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array('comments'=>array(SELF:HAS_MANY,'Comment_Create','post_id')
+        return array('post'=>array(SELF:HAS_ONE,'Post_list','id');
         );
     }
 
@@ -54,8 +54,9 @@ class PostList extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
+            'Author_Name' => 'Author Name',
+            'Comment' => 'Comment',
+            'post_id' => 'Post',
         );
     }
 
@@ -78,8 +79,9 @@ class PostList extends CActiveRecord
         $criteria=new CDbCriteria;
 
         $criteria->compare('id',$this->id);
-        $criteria->compare('title',$this->title,true);
-        $criteria->compare('content',$this->content,true);
+        $criteria->compare('Author_Name',$this->Author_Name,true);
+        $criteria->compare('Comment',$this->Comment,true);
+        $criteria->compare('post_id',$this->post_id);
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -90,7 +92,7 @@ class PostList extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return PostList the static model class
+     * @return CommentCreate the static model class
      */
     public static function model($className=__CLASS__)
     {

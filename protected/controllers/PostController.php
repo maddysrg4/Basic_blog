@@ -2,18 +2,15 @@
 
 class PostController extends Controller
 {
-	public function actionInsert($id,$title,$content)
+	public function actionInsert($title = "1st Post",$content = "Testing")
 	{
-		echo "inserted";
-		
 		$contact = new PostList();
-		$contact->id=$id;
 		$contact->title=$title;
 		$contact->content=$content;
 		$contact->save();
-
-
+		echo CJSON::encode(array('status'=>'SUCCESS'));
 	}
+
 	public function actionView($id)
 	{
 		$var= PostList::model()->findByPk($id);

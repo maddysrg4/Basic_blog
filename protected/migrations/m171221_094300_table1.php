@@ -9,6 +9,7 @@ class m171221_094300_table1 extends CDbMigration
             'title' => 'string NOT NULL',
             'content' => 'text',
         ));
+
     }
  
     public function safedown()
@@ -20,6 +21,7 @@ class m171221_094300_table1 extends CDbMigration
 	// Use safeUp/safeDown to do migration with transaction
 	public function safeUp()
 	{
+
 	}
 
 	public function safeDown()
