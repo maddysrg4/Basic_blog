@@ -1,22 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "Comment_Create".
+ * This is the model class for table "Comment".
  *
- * The followings are the available columns in table 'Comment_Create':
+ * The followings are the available columns in table 'Comment':
  * @property integer $id
- * @property string $Author_Name
- * @property string $Comment
  * @property integer $post_id
+ * @property string $author_name
+ * @property string $content
+ * @property integer $created_at
+ * @property integer $updated_at
  */
-class CommentCreate extends CActiveRecord
+class Comment extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'Comment_Create';
+        return 'Comment';
     }
 
     /**
@@ -27,12 +29,13 @@ class CommentCreate extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('Author_Name, Comment', 'required'),
-            array('post_id', 'numerical', 'integerOnly'=>true),
-            array('Author_Name, Comment', 'length', 'max'=>255),
+            array('author_name', 'required'),
+            array('post_id, created_at, updated_at', 'numerical', 'integerOnly'=>true),
+            array('author_name', 'length', 'max'=>255),
+            array('content', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, Author_Name, Comment, post_id', 'safe', 'on'=>'search'),
+            array('id, post_id, author_name, content, created_at, updated_at', 'safe', 'on'=>'search'),
         );
     }
 
@@ -43,7 +46,7 @@ class CommentCreate extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array('post'=>array(self::HAS_ONE,'Post_list','id')
+        return array('posts'=>array(self::BELONGS_TO,'Post','id')
         );
     }
 
@@ -54,9 +57,9 @@ class CommentCreate extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'Author_Name' => 'Author Name',
-            'Comment' => 'Comment',
             'post_id' => 'Post',
+            'author_name' => 'Author Name',
+            'content' => 'Content',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         );
@@ -81,9 +84,11 @@ class CommentCreate extends CActiveRecord
         $criteria=new CDbCriteria;
 
         $criteria->compare('id',$this->id);
-        $criteria->compare('Author_Name',$this->Author_Name,true);
-        $criteria->compare('Comment',$this->Comment,true);
         $criteria->compare('post_id',$this->post_id);
+        $criteria->compare('author_name',$this->author_name,true);
+        $criteria->compare('content',$this->content,true);
+        $criteria->compare('created_at',$this->created_at);
+        $criteria->compare('updated_at',$this->updated_at);
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -94,12 +99,13 @@ class CommentCreate extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return CommentCreate the static model class
+     * @return Comment the static model class
      */
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
     }
+
     public function beforeSave() {
         if($this->isNewRecord) { 
             $this->created_at = time();
@@ -116,7 +122,7 @@ class CommentCreate extends CActiveRecord
     }
 
     public static function create($attributes) {
-        $model = new CommentCreate;
+        $model = new Comment;
         $model->attributes = $attributes;
         $model->save();
         return $model;

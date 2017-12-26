@@ -1,144 +1,43 @@
-2017/12/21 15:23:41 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'testdrive' in /var/www/html/testdrive/framework/db/CDbConnection.php:399
+2017/12/26 15:33:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'Database1.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2017/12/26 15:36:33 [error] [php] include(m171226_100329_comment.php): failed to open stream: No such file or directory (/var/www/html/testdrive/framework/YiiBase.php:432)
 Stack trace:
-#0 /var/www/html/testdrive/framework/db/CDbConnection.php(347): CDbConnection->open()
-#1 /var/www/html/testdrive/framework/db/CDbConnection.php(325): CDbConnection->setActive(true)
-#2 /var/www/html/testdrive/framework/base/CModule.php(394): CDbConnection->init()
-#3 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(472): CModule->getComponent('db')
-#4 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(481): MigrateCommand->getDbConnection()
-#5 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(512): MigrateCommand->getMigrationHistory(-1)
-#6 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(84): MigrateCommand->getNewMigrations()
-#7 [internal function]: MigrateCommand->actionUp(Array)
-#8 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
-#9 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
-#10 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
-#11 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
-#12 /var/www/html/testdrive/framework/yiic.php(33): CApplication->run()
-#13 /var/www/html/testapp/protected/yiic.php(7): require_once('/var/www/html/t...')
-#14 /var/www/html/testapp/protected/yiic(4): require_once('/var/www/html/t...')
-#15 {main}
----
-2017/12/21 15:25:39 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'testdrive' in /var/www/html/testdrive/framework/db/CDbConnection.php:399
+#0 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(459): spl_autoload_call()
+#1 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(414): MigrateCommand->instantiateMigration()
+#2 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp()
+#3 unknown(0): MigrateCommand->actionUp()
+#4 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs()
+#5 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): MigrateCommand->run()
+#6 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#7 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
+#8 /var/www/html/testdrive/framework/yiic.php(33): CConsoleApplication->run()
+#9 /var/www/html/testapp1/protected/yiic.php(7): require_once()
+#10 /var/www/html/testapp1/protected/yiic(4): require_once()
+
+2017/12/26 15:37:29 [error] [php] include(m171226_100329_comment.php): failed to open stream: No such file or directory (/var/www/html/testdrive/framework/YiiBase.php:432)
 Stack trace:
-#0 /var/www/html/testdrive/framework/db/CDbConnection.php(347): CDbConnection->open()
-#1 /var/www/html/testdrive/framework/db/CDbConnection.php(325): CDbConnection->setActive(true)
-#2 /var/www/html/testdrive/framework/base/CModule.php(394): CDbConnection->init()
-#3 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(472): CModule->getComponent('db')
-#4 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(481): MigrateCommand->getDbConnection()
-#5 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(512): MigrateCommand->getMigrationHistory(-1)
-#6 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(84): MigrateCommand->getNewMigrations()
-#7 [internal function]: MigrateCommand->actionUp(Array)
-#8 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
-#9 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
-#10 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
-#11 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
-#12 /var/www/html/testdrive/framework/yiic.php(33): CApplication->run()
-#13 /var/www/html/testapp/protected/yiic.php(7): require_once('/var/www/html/t...')
-#14 /var/www/html/testapp/protected/yiic(4): require_once('/var/www/html/t...')
-#15 {main}
----
-2017/12/21 15:41:08 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'testdrive' in /var/www/html/testdrive/framework/db/CDbConnection.php:399
+#0 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(459): spl_autoload_call()
+#1 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(414): MigrateCommand->instantiateMigration()
+#2 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp()
+#3 unknown(0): MigrateCommand->actionUp()
+#4 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs()
+#5 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): MigrateCommand->run()
+#6 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#7 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
+#8 /var/www/html/testdrive/framework/yiic.php(33): CConsoleApplication->run()
+#9 /var/www/html/testapp1/protected/yiic.php(7): require_once()
+#10 /var/www/html/testapp1/protected/yiic(4): require_once()
+
+2017/12/26 15:37:41 [error] [php] include(m171226_100329_comment.php): failed to open stream: No such file or directory (/var/www/html/testdrive/framework/YiiBase.php:432)
 Stack trace:
-#0 /var/www/html/testdrive/framework/db/CDbConnection.php(347): CDbConnection->open()
-#1 /var/www/html/testdrive/framework/db/CDbConnection.php(325): CDbConnection->setActive(true)
-#2 /var/www/html/testdrive/framework/base/CModule.php(394): CDbConnection->init()
-#3 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(472): CModule->getComponent('db')
-#4 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(481): MigrateCommand->getDbConnection()
-#5 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(512): MigrateCommand->getMigrationHistory(-1)
-#6 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(84): MigrateCommand->getNewMigrations()
-#7 [internal function]: MigrateCommand->actionUp(Array)
-#8 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
-#9 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
-#10 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
-#11 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
-#12 /var/www/html/testdrive/framework/yiic.php(33): CApplication->run()
-#13 /var/www/html/testapp/protected/yiic.php(7): require_once('/var/www/html/t...')
-#14 /var/www/html/testapp/protected/yiic(4): require_once('/var/www/html/t...')
-#15 {main}
----
-2017/12/21 15:41:31 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1049] Unknown database 'testdrive' in /var/www/html/testdrive/framework/db/CDbConnection.php:399
-Stack trace:
-#0 /var/www/html/testdrive/framework/db/CDbConnection.php(347): CDbConnection->open()
-#1 /var/www/html/testdrive/framework/db/CDbConnection.php(325): CDbConnection->setActive(true)
-#2 /var/www/html/testdrive/framework/base/CModule.php(394): CDbConnection->init()
-#3 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(472): CModule->getComponent('db')
-#4 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(481): MigrateCommand->getDbConnection()
-#5 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(512): MigrateCommand->getMigrationHistory(-1)
-#6 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(84): MigrateCommand->getNewMigrations()
-#7 [internal function]: MigrateCommand->actionUp(Array)
-#8 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
-#9 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
-#10 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
-#11 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
-#12 /var/www/html/testdrive/framework/yiic.php(33): CApplication->run()
-#13 /var/www/html/testapp/protected/yiic.php(7): require_once('/var/www/html/t...')
-#14 /var/www/html/testapp/protected/yiic(4): require_once('/var/www/html/t...')
-#15 {main}
----
-2017/12/21 15:46:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'Database1.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
-2017/12/21 15:46:13 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'String not NULL,
-	`content` test
-)' at line 3. The SQL statement executed was: CREATE TABLE `table1` (
-	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`title` String not NULL,
-	`content` test
-).
-2017/12/21 16:00:03 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'xyz,
-	`Title` varchar(255) NOT NULL,
-	`Comment` String NOT NULL
-)' at line 2. The SQL statement executed was: CREATE TABLE `Comment` (
-	`Authors name` xyz,
-	`Title` varchar(255) NOT NULL,
-	`Comment` String NOT NULL
-).
-2017/12/21 16:00:03 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'xyz,
-	`Title` varchar(255) NOT NULL,
-	`Comment` String NOT NULL
-)' at line 2. The SQL statement executed was: CREATE TABLE `Comment` (
-	`Authors name` xyz,
-	`Title` varchar(255) NOT NULL,
-	`Comment` String NOT NULL
-) in /var/www/html/testdrive/framework/db/CDbCommand.php:358
-Stack trace:
-#0 /var/www/html/testdrive/framework/db/CDbCommand.php(1352): CDbCommand->execute()
-#1 /var/www/html/testdrive/framework/db/CDbMigration.php(250): CDbCommand->createTable('Comment', Array, NULL)
-#2 /var/www/html/testapp/protected/migrations/m171221_102552_Post_view.php(8): CDbMigration->createTable('Comment', Array)
-#3 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(415): m171221_102552_Post_view->up()
-#4 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m171221_102552_...')
-#5 [internal function]: MigrateCommand->actionUp(Array)
-#6 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
-#7 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
-#8 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
-#9 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
-#10 /var/www/html/testdrive/framework/yiic.php(33): CApplication->run()
-#11 /var/www/html/testapp/protected/yiic.php(7): require_once('/var/www/html/t...')
-#12 /var/www/html/testapp/protected/yiic(4): require_once('/var/www/html/t...')
-#13 {main}
----
-2017/12/22 15:30:36 [error] [exception.ParseError] ParseError: syntax error, unexpected ';', expecting ')' in /var/www/html/testapp/protected/migrations/m171222_095947_Comment_table.php:11
-Stack trace:
-#0 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(414): MigrateCommand->instantiateMigration('m171222_095947_...')
-#1 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m171222_095947_...')
-#2 [internal function]: MigrateCommand->actionUp(Array)
-#3 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
-#4 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
-#5 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
-#6 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
-#7 /var/www/html/testdrive/framework/yiic.php(33): CApplication->run()
-#8 /var/www/html/testapp/protected/yiic.php(7): require_once('/var/www/html/t...')
-#9 /var/www/html/testapp/protected/yiic(4): require_once('/var/www/html/t...')
-#10 {main}
----
-2017/12/22 15:32:05 [error] [exception.ParseError] ParseError: syntax error, unexpected ';', expecting ')' in /var/www/html/testapp/protected/migrations/m171222_095947_Comment_table.php:11
-Stack trace:
-#0 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(414): MigrateCommand->instantiateMigration('m171222_095947_...')
-#1 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp('m171222_095947_...')
-#2 [internal function]: MigrateCommand->actionUp(Array)
-#3 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
-#4 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
-#5 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
-#6 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
-#7 /var/www/html/testdrive/framework/yiic.php(33): CApplication->run()
-#8 /var/www/html/testapp/protected/yiic.php(7): require_once('/var/www/html/t...')
-#9 /var/www/html/testapp/protected/yiic(4): require_once('/var/www/html/t...')
-#10 {main}
----
+#0 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(459): spl_autoload_call()
+#1 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(414): MigrateCommand->instantiateMigration()
+#2 /var/www/html/testdrive/framework/cli/commands/MigrateCommand.php(109): MigrateCommand->migrateUp()
+#3 unknown(0): MigrateCommand->actionUp()
+#4 /var/www/html/testdrive/framework/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs()
+#5 /var/www/html/testdrive/framework/console/CConsoleCommandRunner.php(71): MigrateCommand->run()
+#6 /var/www/html/testdrive/framework/console/CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#7 /var/www/html/testdrive/framework/base/CApplication.php(185): CConsoleApplication->processRequest()
+#8 /var/www/html/testdrive/framework/yiic.php(33): CConsoleApplication->run()
+#9 /var/www/html/testapp1/protected/yiic.php(7): require_once()
+#10 /var/www/html/testapp1/protected/yiic(4): require_once()
+

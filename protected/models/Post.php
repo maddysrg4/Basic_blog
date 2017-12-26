@@ -1,22 +1,23 @@
-
 <?php
 
 /**
- * This is the model class for table "Post_list".
+ * This is the model class for table "Post".
  *
- * The followings are the available columns in table 'Post_list':
+ * The followings are the available columns in table 'Post':
  * @property integer $id
  * @property string $title
  * @property string $content
+ * @property integer $created_at
+ * @property integer $updated_at
  */
-class PostList extends CActiveRecord
+class Post extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'Post_list';
+        return 'Post';
     }
 
     /**
@@ -28,11 +29,12 @@ class PostList extends CActiveRecord
         // will receive user inputs.
         return array(
             array('title', 'required'),
+            array('created_at, updated_at', 'numerical', 'integerOnly'=>true),
             array('title', 'length', 'max'=>255),
             array('content', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, title, content', 'safe', 'on'=>'search'),
+            array('id, title, content, created_at, updated_at', 'safe', 'on'=>'search'),
         );
     }
 
@@ -43,7 +45,7 @@ class PostList extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array('comments'=>array(self::HAS_MANY,'CommentCreate','post_id')
+        return array('comments'=>array(self::HAS_MANY,'Comment','post_id')
         );
     }
 
@@ -82,6 +84,8 @@ class PostList extends CActiveRecord
         $criteria->compare('id',$this->id);
         $criteria->compare('title',$this->title,true);
         $criteria->compare('content',$this->content,true);
+        $criteria->compare('created_at',$this->created_at);
+        $criteria->compare('updated_at',$this->updated_at);
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -92,12 +96,13 @@ class PostList extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return PostList the static model class
+     * @return Post the static model class
      */
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
     }
+
     public function beforeSave() {
         if($this->isNewRecord) { 
             $this->created_at = time();
@@ -114,7 +119,7 @@ class PostList extends CActiveRecord
     }
 
     public static function create($attributes) {
-        $model = new PostList;
+        $model = new Post;
         $model->attributes = $attributes;
         $model->save();
         return $model;
