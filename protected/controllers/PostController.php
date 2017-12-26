@@ -35,7 +35,22 @@ class PostController extends Controller
 			array_push($data['comments'],$ar);
 		}
 		echo json_encode($data);
-		
+	}
+	public function actionViewpost()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->select=array('id','title','content');
+		$posts=PostList::model()->findAll($criteria);
+		$data=array();
+		foreach($posts as $p)
+		{
+			$ar=array('id'=>$p->id,
+					  'title'=>$p->title,
+					  'content'=>$p->content,
+					 );
+			array_push($data,$ar);
+		}
+		echo json_encode($data);
 	}
 	
 }
