@@ -43,7 +43,7 @@ class CommentCreate extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array('post'=>array(SELF:HAS_ONE,'Post_list','id');
+        return array('post'=>array(self::HAS_ONE,'Post_list','id')
         );
     }
 
@@ -97,5 +97,26 @@ class CommentCreate extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+    public function beforeSave() {
+        if($this->isNewRecord) { 
+            //$this->created_at = time();
+        }
+       // $this->updated_at = time();
+        return parent::beforeSave();
+    }
+
+    public function updateColumns($column_value_array) {
+        $column_value_array['updated_at'] = time();
+        foreach($column_value_array as $column_name => $column_value)
+            $this->$column_name = $column_value;
+        $this->update(array_keys($column_value_array));
+    }
+
+    public static function create($attributes) {
+        $model = new CommentCreate;
+        $model->attributes = $attributes;
+        $model->save();
+        return $model;
     }
 }

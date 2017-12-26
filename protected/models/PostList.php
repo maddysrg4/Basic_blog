@@ -43,7 +43,7 @@ class PostList extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array('comments'=>array(SELF:HAS_MANY,'Comment_Create','post_id')
+        return array('comments'=>array(self::HAS_MANY,'CommentCreate','post_id')
         );
     }
 
@@ -95,5 +95,26 @@ class PostList extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+    public function beforeSave() {
+        if($this->isNewRecord) { 
+          //  $this->created_at = time();
+        }
+      //  $this->updated_at = time();
+        return parent::beforeSave();
+    }
+
+    public function updateColumns($column_value_array) {
+        $column_value_array['updated_at'] = time();
+        foreach($column_value_array as $column_name => $column_value)
+            $this->$column_name = $column_value;
+        $this->update(array_keys($column_value_array));
+    }
+
+    public static function create($attributes) {
+        $model = new PostList;
+        $model->attributes = $attributes;
+        $model->save();
+        return $model;
     }
 }
