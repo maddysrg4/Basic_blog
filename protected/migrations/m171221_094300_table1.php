@@ -8,6 +8,8 @@ class m171221_094300_table1 extends CDbMigration
             'id' => 'pk',
             'title' => 'string NOT NULL',
             'content' => 'text',
+            'created_at'=>'DATE',
+            'updated_at'=>'DATE',
         ));
 
     }

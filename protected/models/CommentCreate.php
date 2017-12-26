@@ -57,6 +57,8 @@ class CommentCreate extends CActiveRecord
             'Author_Name' => 'Author Name',
             'Comment' => 'Comment',
             'post_id' => 'Post',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         );
     }
 
@@ -100,9 +102,9 @@ class CommentCreate extends CActiveRecord
     }
     public function beforeSave() {
         if($this->isNewRecord) { 
-            //$this->created_at = time();
+            $this->created_at = time();
         }
-       // $this->updated_at = time();
+        $this->updated_at = time();
         return parent::beforeSave();
     }
 

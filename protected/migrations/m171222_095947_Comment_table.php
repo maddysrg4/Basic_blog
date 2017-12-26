@@ -9,6 +9,8 @@ class m171222_095947_Comment_table extends CDbMigration
             'Author_Name'=>'string NOT NULL',
             'Comment'=>'string NOT NULL',
             'post_id'=>'integer',
+            'created_at'=>'DATE',
+			'updated_at'=>'DATE',
         ));
 	}
 

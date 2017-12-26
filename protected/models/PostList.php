@@ -56,6 +56,8 @@ class PostList extends CActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'content' => 'Content',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         );
     }
 
@@ -98,9 +100,9 @@ class PostList extends CActiveRecord
     }
     public function beforeSave() {
         if($this->isNewRecord) { 
-          //  $this->created_at = time();
+            $this->created_at = time();
         }
-      //  $this->updated_at = time();
+        $this->updated_at = time();
         return parent::beforeSave();
     }
 
